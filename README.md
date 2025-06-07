@@ -1,12 +1,28 @@
-# React + Vite
+# 📈 Stocklyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Stocklyzer is a sleek, AI-powered stock market dashboard built with **React.js**, **Material UI**, and **OpenRouter AI**. Track top Indian stocks, manage a personalised watchlist, and ask Stocklyzer AI for insights and financial explanations.
 
-Currently, two official plugins are available:
+### 🔗 Live Demo
+👉 [https://stocklyzer.vercel.app](https://stocklyzer.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ⚡ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📊 Real-time trending stocks
+- 🧠 AI Assistant (OpenRouter + LLaMA-3)
+- ❤️ Add/remove from Watchlist
+- 📈 Detailed Stock View (e.g. TSLA)
+- ⚙️ Settings for theme, alerts, and auto-refresh
+
+---
+
+## 🚀 Tech Stack
+
+- React.js + Vite
+- Material UI
+- OpenRouter API (Serverless via Vercel)
+
+---
+
+## Built with 💚 by Dnyanesh Mali
