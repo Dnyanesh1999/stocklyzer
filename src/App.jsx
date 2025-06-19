@@ -6,6 +6,7 @@ import Watchlist from "./pages/Watchlist";
 import StockDetail from "./components/StockDetail";
 import Settings from "./pages/Settings";
 import AiAssistant from "./pages/AiAssistant";
+import GlobalSnackbar from "./components/GlobalSnackbar";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/ai" element={<AiAssistant />} />
         <Route path="/stock/:symbol" element={<StockDetail />} />
       </Routes>
+      <GlobalSnackbar />
     </>
   );
 };
