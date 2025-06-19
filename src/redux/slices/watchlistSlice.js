@@ -1,9 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialWatchlist = () => {
+  if (typeof localStorage === "undefined") return [];
+  try {
+    const stored = localStorage.getItem("watchlist");
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
 const watchlistSlice = createSlice({
   name: "watchlist",
   initialState: {
-    items: [],
+    items: getInitialWatchlist(),
   },
   reducers: {
     toggleWatchlist: (state, action) => {
@@ -16,6 +26,9 @@ const watchlistSlice = createSlice({
         );
       } else {
         state.items.push(action.payload);
+      }
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("watchlist", JSON.stringify(state.items));
       }
     },
   },
