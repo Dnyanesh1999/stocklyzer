@@ -4,3 +4,21 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.typing-caret {
+  display: inline-block;
+  width: 1px;
+  background: currentColor;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  from,
+  to {
+    background: transparent;
+  }
+  50% {
+    background: currentColor;
+  }
+}
