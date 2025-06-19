@@ -7,7 +7,7 @@ import { SmartToy } from "@mui/icons-material";
 
 const navLinks = [
   { lable: "Dashboard", path: "/", icon: <TrendingUp /> },
-  { lable: "Wishlist", path: "/wishlist", icon: <FavoriteOutlined /> },
+  { lable: "Watchlist", path: "/watchlist", icon: <FavoriteOutlined /> },
   { lable: "Settings", path: "/settings", icon: <Settings /> },
   { lable: "AI Assistant", path: "/ai", icon: <SmartToy /> },
 ];
