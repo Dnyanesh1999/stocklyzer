@@ -24,6 +24,7 @@ import {
   TrendingDown,
 } from "@mui/icons-material";
 import StatCard from "./StatCard";
+import StockChart from "./StockChart";
 
 const StockDetail = () => {
   const { symbol } = useParams();
@@ -291,9 +292,24 @@ const StockDetail = () => {
             <Typography variant="body2" color="text.secondary">
               Previous Close
             </Typography>
-            <Typography variant="body1">${quote.pc?.toFixed(2)}</Typography>
+          <Typography variant="body1">${quote.pc?.toFixed(2)}</Typography>
           </Grid>
         </Grid>
+      </Box>
+
+      <Box
+        mt={4}
+        mb={4}
+        p={3}
+        borderRadius={1}
+        border="1px solid"
+        borderColor="divider"
+        bgcolor="background.paper"
+      >
+        <Typography variant="h6" fontWeight={600} gutterBottom>
+          Price Chart
+        </Typography>
+        <StockChart symbol={symbol} />
       </Box>
     </Box>
   );
