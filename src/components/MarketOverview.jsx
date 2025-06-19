@@ -31,7 +31,7 @@ const MarketOverview = () => {
       ) : (
         <Grid container spacing={2}>
           {indices.map((index) => (
-            <Grid size={{ md: 4 }} key={index.name}>
+            <Grid size={{ xs: 12, md: 4 }} key={index.name}>
               <Box
                 sx={{
                   backgroundColor: "background.paper",

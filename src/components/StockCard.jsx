@@ -10,7 +10,7 @@ const StockCard = ({ stock, isFavorite, onToggleFavorite }) => {
   return (
     <Card
       sx={{
-        width: "240px",
+        width: "100%",
         p: 2,
         borderRadius: 1,
         backgroundColor: "background.paper",

@@ -48,7 +48,7 @@ const TrendingStocks = () => {
       ) : (
         <Grid container spacing={4}>
           {trending.map((stock) => (
-            <Grid item xs={12} md={8} key={stock.symbol}>
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={stock.symbol}>
               <StockCard
                 key={stock.symbol}
                 stock={stock}
