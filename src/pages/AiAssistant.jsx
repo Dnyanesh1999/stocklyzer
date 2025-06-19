@@ -21,12 +21,13 @@ const AiAssistant = () => {
     if (!question.trim()) return;
     setLoading(true);
     setAnswer("");
-    setShowAnswer(false);
-
-    const response = await askStocklyzerAi(question);
-    setAnswer(response);
-    setLoading(false);
     setShowAnswer(true);
+
+    await askStocklyzerAi(question, (chunk) => {
+      setAnswer((prev) => prev + chunk);
+    });
+
+    setLoading(false);
   };
 
   return (
@@ -120,6 +121,7 @@ const AiAssistant = () => {
                 >
                   {answer}
                 </ReactMarkdown>
+                {loading && <span className="typing-caret" />}
               </Box>
             </Paper>
           )}

@@ -13,43 +13,46 @@ export default async function handler(req, res) {
   console.log("🔐 [api/aiApi] API Key present:", !!apiKey);
 
   try {
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://stocklyzer.vercel.app",
-          "X-Title": "Stocklyzer AI",
-        },
-        body: JSON.stringify({
-          model: "meta-llama/llama-3.3-8b-instruct:free",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are Stocklyzer, a helpful stock market assistant. Provide concise summaries, explain financial terms, and assist users in understanding stock market data. Answer like a smart financial advisor.",
-            },
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
-        }),
-      }
-    );
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://stocklyzer.vercel.app",
+        "X-Title": "Stocklyzer AI",
+      },
+      body: JSON.stringify({
+        model: "meta-llama/llama-3.3-8b-instruct:free",
+        stream: true,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are Stocklyzer, a helpful stock market assistant. Provide concise summaries, explain financial terms, and assist users in understanding stock market data. Answer like a smart financial advisor.",
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      }),
+    });
 
-    const result = await response.json();
-
-    console.log("📦 [api/aiApi] OpenRouter raw response:", result);
-
-    if (!result?.choices?.[0]?.message?.content) {
-      throw new Error("Invalid OpenRouter response format.");
+    if (!response.body) {
+      throw new Error("No response body from OpenRouter.");
     }
 
-    // Send only necessary content to frontend
-    res.status(200).json({ choices: result.choices });
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream; charset=utf-8",
+      "Cache-Control": "no-cache, no-transform",
+      Connection: "keep-alive",
+    });
+
+    for await (const chunk of response.body) {
+      res.write(chunk);
+    }
+
+    res.end();
   } catch (err) {
     console.error("❌ [api/aiApi] OpenRouter error:", err);
     res.status(500).json({ error: "Something went wrong with OpenRouter AI." });
