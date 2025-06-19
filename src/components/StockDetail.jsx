@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { toggleWatchlist } from "../redux/slices/watchlistSlice";
+import { showSnackbar } from "../redux/slices/uiSlice";
 import {
   Box,
   Typography,
@@ -84,6 +85,7 @@ const StockDetail = () => {
   }
 
   const handleToggleWatchlist = () => {
+    const exists = watchlist.some((item) => item.symbol === symbol);
     dispatch(
       toggleWatchlist({
         symbol,
@@ -91,6 +93,12 @@ const StockDetail = () => {
         ltp: quote.c,
         change: quote.d,
         change_percent: quote.dp,
+      })
+    );
+    dispatch(
+      showSnackbar({
+        message: exists ? "Removed from watchlist" : "Added to watchlist",
+        severity: "success",
       })
     );
   };
