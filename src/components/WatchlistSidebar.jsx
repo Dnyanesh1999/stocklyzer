@@ -31,7 +31,7 @@ const WatchlistSidebar = () => {
           />
           Your Watchlist
         </Typography>
-        <Button size="small" onClick={() => navigate("/wishlist")}>
+        <Button size="small" onClick={() => navigate("/watchlist")}>
           View All
         </Button>
       </Box>

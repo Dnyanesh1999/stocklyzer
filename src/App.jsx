@@ -15,7 +15,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/wishlist" element={<Watchlist />} />
+        <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/ai" element={<AiAssistant />} />
         <Route path="/stock/:symbol" element={<StockDetail />} />

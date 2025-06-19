@@ -110,7 +110,13 @@ const WatchlistPreview = ({ limit = 4, isFullView = false }) => {
                 />
               </Box>
               {isFullView && (
-                <IconButton onClick={() => handleRemove(stock)} size="small">
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemove(stock);
+                  }}
+                  size="small"
+                >
                   <Close sx={{ fontSize: 20, color: "text.secondary" }} />
                 </IconButton>
               )}
@@ -123,7 +129,7 @@ const WatchlistPreview = ({ limit = 4, isFullView = false }) => {
         <Box mt={2} display="flex" justifyContent="center">
           <Button
             size="small"
-            onClick={() => navigate("/wishlist")}
+            onClick={() => navigate("/watchlist")}
             sx={{ color: "success.main" }}
           >
             +{watchlist.length - limit} more stocks
