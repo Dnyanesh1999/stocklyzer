@@ -11,6 +11,7 @@ import { FavoriteBorderOutlined, Close } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toggleWatchlist } from "../redux/slices/watchlistSlice";
+import { showSnackbar } from "../redux/slices/uiSlice";
 
 const WatchlistPreview = ({ limit = 4, isFullView = false }) => {
   const watchlist = useSelector((state) => state.watchlist.items);
@@ -21,6 +22,9 @@ const WatchlistPreview = ({ limit = 4, isFullView = false }) => {
 
   const handleRemove = (stock) => {
     dispatch(toggleWatchlist(stock));
+    dispatch(
+      showSnackbar({ message: "Removed from watchlist", severity: "success" })
+    );
   };
 
   if (watchlist.length === 0) {
