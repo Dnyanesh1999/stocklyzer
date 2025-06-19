@@ -24,6 +24,7 @@ import {
   TrendingDown,
 } from "@mui/icons-material";
 import StatCard from "./StatCard";
+import StockChart from "./StockChart";
 
 const StockDetail = () => {
   const { symbol } = useParams();
@@ -213,6 +214,11 @@ const StockDetail = () => {
           value={`$${quote.l?.toFixed(2)}`}
           color="error.main"
         />
+      </Box>
+
+      {/* Historical Price Chart */}
+      <Box mt={4}>
+        <StockChart symbol={symbol} />
       </Box>
 
       <Box
