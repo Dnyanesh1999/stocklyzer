@@ -6,6 +6,11 @@ export const askStocklyzerAi = async (prompt, onChunk) => {
       body: JSON.stringify({ prompt }),
     });
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText || `Request failed with ${response.status}`);
+    }
+
     if (!response.body) {
       throw new Error("No response body");
     }
