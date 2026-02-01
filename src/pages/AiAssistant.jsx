@@ -9,6 +9,7 @@ import {
   Fade,
 } from "@mui/material";
 import { askStocklyzerAi } from "../utils/askAi";
+
 import ReactMarkdown from "react-markdown";
 
 const AiAssistant = () => {
@@ -19,15 +20,20 @@ const AiAssistant = () => {
 
   const handleAsk = async () => {
     if (!question.trim()) return;
+
     setLoading(true);
     setAnswer("");
     setShowAnswer(true);
 
-    await askStocklyzerAi(question, (chunk) => {
-      setAnswer((prev) => prev + chunk);
-    });
-
-    setLoading(false);
+    try {
+      await askStocklyzerAi(question, (chunk) => {
+        setAnswer((prev) => prev + chunk);
+      });
+    } catch (err) {
+      setAnswer(`❌ ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
